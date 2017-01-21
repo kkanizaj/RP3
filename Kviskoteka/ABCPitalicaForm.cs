@@ -31,7 +31,7 @@ namespace Kviskoteka
             pictureBox1.Region = rg;
             pictureBox2.Region = rg;
 
-            postaviPitanje();
+            postaviPitanje(Postavke.postavke[0], Postavke.postavke[3]);
         }
 
         private void updateBodovi()
@@ -39,7 +39,12 @@ namespace Kviskoteka
             bodovi.Text = "BODOVI: " + player.ToString();
         }
 
-        private void postaviPitanje()
+        private void odgovorOstalihIgrača()
+        {
+            bodovi.Text = "BODOVI: " + player.ToString();
+        }
+
+        private void postaviPitanje(int tezina1, int tezina2)
         {
 
             a_odgovor.Enabled = true;

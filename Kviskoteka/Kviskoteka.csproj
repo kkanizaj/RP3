@@ -75,6 +75,18 @@
     <Compile Include="ABCPitalicaForm.Designer.cs">
       <DependentUpon>ABCPitalicaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABCPitanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABCPitanje.Designer.cs">
+      <DependentUpon>ABCPitanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AsocijacijePitanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsocijacijePitanje.Designer.cs">
+      <DependentUpon>AsocijacijePitanje.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -111,14 +123,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZavršnaPitanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZavršnaPitanje.Designer.cs">
+      <DependentUpon>ZavršnaPitanje.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ABCPitalicaForm.resx">
       <DependentUpon>ABCPitalicaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABCPitanje.resx">
+      <DependentUpon>ABCPitanje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindowForm.resx">
       <DependentUpon>MainWindowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Napredne.resx">
+      <DependentUpon>Napredne.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NovaIgra.resx">
       <DependentUpon>NovaIgra.cs</DependentUpon>

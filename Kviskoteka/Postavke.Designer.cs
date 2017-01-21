@@ -170,18 +170,18 @@
             this.ABC1p.Name = "ABC1p";
             this.ABC1p.Size = new System.Drawing.Size(57, 21);
             this.ABC1p.TabIndex = 2;
-            this.ABC1p.TabStop = true;
             this.ABC1p.Text = "profi";
             this.ABC1p.UseVisualStyleBackColor = true;
             // 
             // ABC1d
             // 
             this.ABC1d.AutoSize = true;
+            this.ABC1d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ABC1d.Location = new System.Drawing.Point(95, 21);
             this.ABC1d.Name = "ABC1d";
+            this.ABC1d.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ABC1d.Size = new System.Drawing.Size(66, 21);
             this.ABC1d.TabIndex = 1;
-            this.ABC1d.TabStop = true;
             this.ABC1d.Text = "dobar";
             this.ABC1d.UseVisualStyleBackColor = true;
             // 
@@ -192,7 +192,6 @@
             this.ABC1s.Name = "ABC1s";
             this.ABC1s.Size = new System.Drawing.Size(55, 21);
             this.ABC1s.TabIndex = 0;
-            this.ABC1s.TabStop = true;
             this.ABC1s.Text = "slab";
             this.ABC1s.UseVisualStyleBackColor = true;
             // 
@@ -214,7 +213,6 @@
             this.ASOC1p.Name = "ASOC1p";
             this.ASOC1p.Size = new System.Drawing.Size(57, 21);
             this.ASOC1p.TabIndex = 2;
-            this.ASOC1p.TabStop = true;
             this.ASOC1p.Text = "profi";
             this.ASOC1p.UseVisualStyleBackColor = true;
             // 
@@ -225,7 +223,6 @@
             this.ASOC1d.Name = "ASOC1d";
             this.ASOC1d.Size = new System.Drawing.Size(66, 21);
             this.ASOC1d.TabIndex = 1;
-            this.ASOC1d.TabStop = true;
             this.ASOC1d.Text = "dobar";
             this.ASOC1d.UseVisualStyleBackColor = true;
             // 
@@ -236,7 +233,6 @@
             this.ASOC1s.Name = "ASOC1s";
             this.ASOC1s.Size = new System.Drawing.Size(55, 21);
             this.ASOC1s.TabIndex = 0;
-            this.ASOC1s.TabStop = true;
             this.ASOC1s.Text = "slab";
             this.ASOC1s.UseVisualStyleBackColor = true;
             // 
@@ -258,7 +254,6 @@
             this.ZAV1p.Name = "ZAV1p";
             this.ZAV1p.Size = new System.Drawing.Size(57, 21);
             this.ZAV1p.TabIndex = 2;
-            this.ZAV1p.TabStop = true;
             this.ZAV1p.Text = "profi";
             this.ZAV1p.UseVisualStyleBackColor = true;
             // 
@@ -269,7 +264,6 @@
             this.ZAV1d.Name = "ZAV1d";
             this.ZAV1d.Size = new System.Drawing.Size(66, 21);
             this.ZAV1d.TabIndex = 1;
-            this.ZAV1d.TabStop = true;
             this.ZAV1d.Text = "dobar";
             this.ZAV1d.UseVisualStyleBackColor = true;
             // 
@@ -280,7 +274,6 @@
             this.ZAV1s.Name = "ZAV1s";
             this.ZAV1s.Size = new System.Drawing.Size(55, 21);
             this.ZAV1s.TabIndex = 0;
-            this.ZAV1s.TabStop = true;
             this.ZAV1s.Text = "slab";
             this.ZAV1s.UseVisualStyleBackColor = true;
             // 
@@ -302,7 +295,6 @@
             this.ZAV2p.Name = "ZAV2p";
             this.ZAV2p.Size = new System.Drawing.Size(57, 21);
             this.ZAV2p.TabIndex = 2;
-            this.ZAV2p.TabStop = true;
             this.ZAV2p.Text = "profi";
             this.ZAV2p.UseVisualStyleBackColor = true;
             // 
@@ -313,7 +305,6 @@
             this.ZAV2d.Name = "ZAV2d";
             this.ZAV2d.Size = new System.Drawing.Size(66, 21);
             this.ZAV2d.TabIndex = 1;
-            this.ZAV2d.TabStop = true;
             this.ZAV2d.Text = "dobar";
             this.ZAV2d.UseVisualStyleBackColor = true;
             // 
@@ -324,7 +315,6 @@
             this.ZAV2s.Name = "ZAV2s";
             this.ZAV2s.Size = new System.Drawing.Size(55, 21);
             this.ZAV2s.TabIndex = 0;
-            this.ZAV2s.TabStop = true;
             this.ZAV2s.Text = "slab";
             this.ZAV2s.UseVisualStyleBackColor = true;
             // 
@@ -346,7 +336,6 @@
             this.ASOC2p.Name = "ASOC2p";
             this.ASOC2p.Size = new System.Drawing.Size(57, 21);
             this.ASOC2p.TabIndex = 2;
-            this.ASOC2p.TabStop = true;
             this.ASOC2p.Text = "profi";
             this.ASOC2p.UseVisualStyleBackColor = true;
             // 
@@ -357,7 +346,6 @@
             this.ASOC2d.Name = "ASOC2d";
             this.ASOC2d.Size = new System.Drawing.Size(66, 21);
             this.ASOC2d.TabIndex = 1;
-            this.ASOC2d.TabStop = true;
             this.ASOC2d.Text = "dobar";
             this.ASOC2d.UseVisualStyleBackColor = true;
             // 
@@ -368,7 +356,6 @@
             this.ASOC2s.Name = "ASOC2s";
             this.ASOC2s.Size = new System.Drawing.Size(55, 21);
             this.ASOC2s.TabIndex = 0;
-            this.ASOC2s.TabStop = true;
             this.ASOC2s.Text = "slab";
             this.ASOC2s.UseVisualStyleBackColor = true;
             // 
@@ -390,7 +377,6 @@
             this.ABC2p.Name = "ABC2p";
             this.ABC2p.Size = new System.Drawing.Size(57, 21);
             this.ABC2p.TabIndex = 2;
-            this.ABC2p.TabStop = true;
             this.ABC2p.Text = "profi";
             this.ABC2p.UseVisualStyleBackColor = true;
             // 
@@ -401,7 +387,6 @@
             this.ABC2d.Name = "ABC2d";
             this.ABC2d.Size = new System.Drawing.Size(66, 21);
             this.ABC2d.TabIndex = 1;
-            this.ABC2d.TabStop = true;
             this.ABC2d.Text = "dobar";
             this.ABC2d.UseVisualStyleBackColor = true;
             // 
@@ -412,7 +397,6 @@
             this.ABC2s.Name = "ABC2s";
             this.ABC2s.Size = new System.Drawing.Size(55, 21);
             this.ABC2s.TabIndex = 0;
-            this.ABC2s.TabStop = true;
             this.ABC2s.Text = "slab";
             this.ABC2s.UseVisualStyleBackColor = true;
             // 

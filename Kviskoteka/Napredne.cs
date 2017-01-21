@@ -16,5 +16,30 @@ namespace Kviskoteka
         {
             InitializeComponent();
         }
+
+        private void ABC_Click(object sender, EventArgs e)
+        {
+            ABCPitanje ni = new ABCPitanje();
+            this.Hide();
+            ni.ShowDialog();
+            this.Close();
+        }
+
+        private void Asocijacije_Click(object sender, EventArgs e)
+        {
+            AsocijacijePitanje ni = new AsocijacijePitanje();
+            this.Hide();
+            ni.ShowDialog();
+            this.Close();
+        }
+
+        private void Završna_Click(object sender, EventArgs e)
+        {
+            ZavršnaPitanje ni = new ZavršnaPitanje();
+            this.Hide();
+            ni.ShowDialog();
+            this.Close();
+
+        }
     }
 }

@@ -28,9 +28,9 @@ namespace Kviskoteka
             if (username.Text == "admin" && pass.Text == "admin")
             {
                 Napredne ni = new Napredne();
-                this.Hide();
                 ni.ShowDialog();
                 this.Close();
+
             }
         }
 

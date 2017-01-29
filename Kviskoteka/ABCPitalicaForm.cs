@@ -20,6 +20,9 @@ namespace Kviskoteka
         int player1 = 0;
         int player2 = 0;
         int kviskoBodovi = 0;
+        double player1Tezina = Postavke.postavke[0] * 0.3;
+        double player2Tezina = Postavke.postavke[3] * 0.3;
+        int brojPitanja = 0;
 
         public ABCPitalicaForm()
         {
@@ -31,7 +34,7 @@ namespace Kviskoteka
             pictureBox1.Region = rg;
             pictureBox2.Region = rg;
 
-            postaviPitanje(Postavke.postavke[0], Postavke.postavke[3]);
+            postaviPitanje();
         }
 
         private void updateBodovi()
@@ -39,12 +42,72 @@ namespace Kviskoteka
             bodovi.Text = "BODOVI: " + player.ToString();
         }
 
-        private void odgovorOstalihIgrača()
+        private async void odgovorOstalihIgrača()
         {
-            bodovi.Text = "BODOVI: " + player.ToString();
+            Random random = new Random();
+            if(random.NextDouble() < player1Tezina)
+            {
+                player1 += 2;
+                pictureBox1.BackColor = Color.Green; 
+            }
+            else
+            {
+                pictureBox1.BackColor = Color.Red;
+            }
+            if (random.NextDouble() < player2Tezina)
+            {
+                player2 += 2;
+                pictureBox2.BackColor = Color.Green;
+            }
+            else
+            {
+                pictureBox2.BackColor = Color.Red;
+            }
+
+            player1bodovi.Text = "BODOVI: " + player1.ToString();
+            player2bodovi.Text = "BODOVI: " + player2.ToString();
+
+            ++brojPitanja;
+
+            //System.Threading.Thread.Sleep(5000);
+            await Task.Delay(2000);
+
+            pictureBox1.BackColor = Color.White;
+            pictureBox2.BackColor = Color.White;
+            a_odgovor.BackColor = Color.LightGray;
+            b_odgovor.BackColor = Color.LightGray;
+            c_odgovor.BackColor = Color.LightGray;
+            if (brojPitanja < 1)
+            {
+                postaviPitanje();
+            }
+            else
+            {
+                int kviskoBodovi1 = 0;
+                int kviskoBodovi2 = 0;
+
+                if (player >= 6)
+                {
+                    kviskoBodovi = 1;
+                }
+                if (player1 >= 6)
+                {
+                    kviskoBodovi1 = 1;
+                }
+                if (player2 >= 6)
+                {
+                    kviskoBodovi2 = 1;
+                }
+
+                KviskoForm ni = new KviskoForm(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
+                ni.Hide();
+                ni.ShowDialog();
+                this.Close();
+
+            }
         }
 
-        private void postaviPitanje(int tezina1, int tezina2)
+        private void postaviPitanje()
         {
 
             a_odgovor.Enabled = true;
@@ -55,8 +118,10 @@ namespace Kviskoteka
             kvisko.Text = "KVISKO: " + kviskoBodovi.ToString();
             updateBodovi();
             ABCPitalica prva = new ABCPitalica("Koliko je 2+2?", "4", "3", "2");
+
             string[] odgovori = new[] { prva.Tocan, prva.Drugi, prva.Treci };
             trenutniTocan = prva.Tocan;
+
             Random rnd = new Random();
             pitanje.Text = prva.Pitanje;
 
@@ -75,9 +140,6 @@ namespace Kviskoteka
             }
             c_odgovor.Text = odgovori[c];
 
-            player1bodovi.Text = player1.ToString();
-            player2bodovi.Text = player2.ToString();
-
             //spremiti id iskorištenog pitanja
 
         }
@@ -89,7 +151,7 @@ namespace Kviskoteka
             if (a_odgovor.Text == trenutniTocan)
             {
                 a_odgovor.BackColor = Color.Green;
-                ++player;
+                player += 2;
             }
             else
             {
@@ -97,8 +159,8 @@ namespace Kviskoteka
             }
 
             updateBodovi();
-
-            //dodati bodove protivnicima ovisno o tezini i promijeniti im boju
+            odgovorOstalihIgrača();
+            
 
         }
 
@@ -109,7 +171,7 @@ namespace Kviskoteka
             if (b_odgovor.Text == trenutniTocan)
             {
                 b_odgovor.BackColor = Color.Green;
-                ++player;
+                player += 2;
             }
             else
             {
@@ -117,8 +179,8 @@ namespace Kviskoteka
             }
 
             updateBodovi();
-
-            //dodati bodove protivnicima ovisno o tezini
+            odgovorOstalihIgrača();
+            
 
         }
 
@@ -129,7 +191,7 @@ namespace Kviskoteka
             if (c_odgovor.Text == trenutniTocan)
             {
                 c_odgovor.BackColor = Color.Green;
-                ++player;
+                player += 2;
             }
             else
             {
@@ -137,8 +199,7 @@ namespace Kviskoteka
             }
 
             updateBodovi();
-
-            //dodati bodove protivnicima ovisno o tezini
+            odgovorOstalihIgrača();
 
         }
     }

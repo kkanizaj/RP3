@@ -68,14 +68,14 @@ namespace Kviskoteka
             // 
             this.player2bodovi.Location = new System.Drawing.Point(896, 169);
             this.player2bodovi.Name = "player2bodovi";
-            this.player2bodovi.Size = new System.Drawing.Size(29, 22);
+            this.player2bodovi.Size = new System.Drawing.Size(108, 22);
             this.player2bodovi.TabIndex = 2;
             // 
             // player1bodovi
             // 
             this.player1bodovi.Location = new System.Drawing.Point(311, 169);
             this.player1bodovi.Name = "player1bodovi";
-            this.player1bodovi.Size = new System.Drawing.Size(29, 22);
+            this.player1bodovi.Size = new System.Drawing.Size(112, 22);
             this.player1bodovi.TabIndex = 3;
             // 
             // kvisko

@@ -63,6 +63,7 @@
             this.spremi = new System.Windows.Forms.Button();
             this.napredne = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.Natrag = new System.Windows.Forms.Button();
             this.ABC1.SuspendLayout();
             this.ASOC1.SuspendLayout();
             this.ZAV1.SuspendLayout();
@@ -414,7 +415,7 @@
             // napredne
             // 
             this.napredne.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.napredne.Location = new System.Drawing.Point(101, 468);
+            this.napredne.Location = new System.Drawing.Point(288, 461);
             this.napredne.Name = "napredne";
             this.napredne.Size = new System.Drawing.Size(347, 42);
             this.napredne.TabIndex = 19;
@@ -432,11 +433,23 @@
             this.textBox5.Text = "ABC Pitalica";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // Natrag
+            // 
+            this.Natrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Natrag.Location = new System.Drawing.Point(101, 461);
+            this.Natrag.Name = "Natrag";
+            this.Natrag.Size = new System.Drawing.Size(129, 46);
+            this.Natrag.TabIndex = 20;
+            this.Natrag.Text = "NATRAG";
+            this.Natrag.UseVisualStyleBackColor = true;
+            this.Natrag.Click += new System.EventHandler(this.Natrag_Click);
+            // 
             // Postavke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1299, 719);
+            this.Controls.Add(this.Natrag);
             this.Controls.Add(this.napredne);
             this.Controls.Add(this.spremi);
             this.Controls.Add(this.ZAV2);
@@ -510,5 +523,6 @@
         private System.Windows.Forms.Button spremi;
         private System.Windows.Forms.Button napredne;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button Natrag;
     }
 }

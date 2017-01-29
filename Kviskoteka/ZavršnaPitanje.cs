@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kviskoteka.Objects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,27 @@ namespace Kviskoteka
         public ZavršnaPitanje()
         {
             InitializeComponent();
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (Pitanje.Text.Length > 0  && Odgovor.Text.Length > 0)
+            {
+                ZavrsnaIgra nova = new ZavrsnaIgra(Pitanje.Text, Odgovor.Text);
+                //spremiti u bazu
+                Pitanje.Text = "";
+                Odgovor.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Popunite sva polja");
+            }
+
+        }
+
+        private void Natrag_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

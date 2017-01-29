@@ -32,6 +32,7 @@
             this.Asocijacije = new System.Windows.Forms.Button();
             this.Završna = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.Natrag = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ABC
@@ -74,11 +75,22 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Odaberite igru za koju želite dodati pitanja";
             // 
+            // Natrag
+            // 
+            this.Natrag.Location = new System.Drawing.Point(651, 416);
+            this.Natrag.Name = "Natrag";
+            this.Natrag.Size = new System.Drawing.Size(112, 42);
+            this.Natrag.TabIndex = 4;
+            this.Natrag.Text = "NATRAG";
+            this.Natrag.UseVisualStyleBackColor = true;
+            this.Natrag.Click += new System.EventHandler(this.Natrag_Click);
+            // 
             // Napredne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 491);
+            this.Controls.Add(this.Natrag);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Završna);
             this.Controls.Add(this.Asocijacije);
@@ -96,5 +108,6 @@
         private System.Windows.Forms.Button Asocijacije;
         private System.Windows.Forms.Button Završna;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Natrag;
     }
 }

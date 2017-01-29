@@ -52,7 +52,7 @@
             this.username.Location = new System.Drawing.Point(202, 74);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(167, 30);
-            this.username.TabIndex = 1;
+            this.username.TabIndex = 0;
             // 
             // pass
             // 
@@ -61,8 +61,7 @@
             this.pass.Name = "pass";
             this.pass.PasswordChar = '*';
             this.pass.Size = new System.Drawing.Size(167, 30);
-            this.pass.TabIndex = 2;
-            this.pass.TextChanged += new System.EventHandler(this.pass_TextChanged);
+            this.pass.TabIndex = 1;
             // 
             // label1
             // 
@@ -86,6 +85,7 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.login1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(406, 287);

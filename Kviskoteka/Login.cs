@@ -33,10 +33,5 @@ namespace Kviskoteka
 
             }
         }
-
-        private void pass_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

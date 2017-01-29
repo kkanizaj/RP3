@@ -41,28 +41,30 @@ namespace Kviskoteka.Objects
         public Asocijacije(string p11, string p12, string p13, string p14, string p1o, string p21, string p22, string p23, string p24, string p2o, string p31, string p32, string p33, string p34, string p3o, string p41, string p42, string p43, string p44, string p4o, string rjesenje)
         {
             P11 = p11;
-            P11 = p12;
-            P11 = p13; 
+            P12 = p12;
+            P13 = p13; 
             P14 = p14;
             P1o = p1o;
 
             P21 = p21;
-            P21 = p22;
-            P21 = p23;
+            P22 = p22;
+            P23 = p23;
             P24 = p24;
             P2o = p2o;
 
             P31 = p31;
-            P31 = p32;
-            P31 = p33;
+            P32 = p32;
+            P33 = p33;
             P34 = p34;
             P3o = p3o;
 
             P41 = p41;
-            P41 = p42;
-            P41 = p43;
+            P42 = p42;
+            P43 = p43;
             P44 = p44;
             P4o = p4o;
+
+            Rjesenje = rjesenje;
 
         }
 

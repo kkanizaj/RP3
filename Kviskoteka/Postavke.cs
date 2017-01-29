@@ -188,6 +188,10 @@ namespace Kviskoteka
 
             this.Close();
         }
-        
+
+        private void Natrag_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

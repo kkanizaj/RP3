@@ -18,9 +18,9 @@ namespace Kviskoteka
         int player;
         int player1;
         int player2;
-        int ulozio;
-        int ulozio1;
-        int ulozio2;
+        int ulozio=0;
+        int ulozio1=0;
+        int ulozio2=0;
 
         public KviskoForm(int kviskoBodovi, int kviskoBodovi1, int kviskoBodovi2, int player, int player1, int player2)
         {
@@ -102,7 +102,7 @@ namespace Kviskoteka
         private void startAsocijacije_Click(object sender, EventArgs e)
         {
             AsocijacijeForm ni = new AsocijacijeForm(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2, ulozio, ulozio1, ulozio2);
-            ni.Hide();
+            this.Hide();
             ni.ShowDialog();
             this.Close();
 

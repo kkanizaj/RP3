@@ -22,14 +22,13 @@ namespace Kviskoteka
         int kviskoBodovi2;
         double player1Tezina = Postavke.postavke[1];
         double player2Tezina = Postavke.postavke[4];
-        int brojPitanja = 0;
         int ulozio;
         int ulozio1;
         int ulozio2;
-        int pog1 = 0;
-        int pog2 = 0;
-        int pog3 = 0;
-        int pog4 = 0;
+        int otv1 = 0;
+        int otv2 = 0;
+        int otv3 = 0;
+        int otv4 = 0;
 
         string[] rjesenja = new string[5];
 
@@ -74,6 +73,7 @@ namespace Kviskoteka
             pokreniIgru();
         }
 
+
         public void pokreniIgru()
         {
 
@@ -105,35 +105,51 @@ namespace Kviskoteka
             rjesenja[3] = prva.P4o.ToString();
             rjesenja[4] = prva.Rjesenje.ToString();
         }
-        
-        public async void drugiIgrac()
+
+    public async void drugiIgrac()
         {   
+
             pictureBox1.BackColor = Color.Blue;
-            while (true)
+            await Task.Delay(500);
+            List<Button> buttoni = new List<Button>();
+
+            foreach (Control x in this.Controls)
             {
-                await Task.Delay(200);
-                List<Button> buttoni = new List<Button>();
-
-                foreach (Control x in this.Controls)
+                if (x is Button && x.Text == "")
                 {
-                    if (x is Button && x.Text != "")
-                    {
-                        buttoni.Add((Button)x);
-                    }
+                    buttoni.Add((Button)x);
                 }
+            }
 
-                Random rnd = new Random();
-                Button btn = buttoni[rnd.Next(1, buttoni.Count)];
+            Random rnd = new Random();
+            Dictionary<TextBox, int> l = new Dictionary<TextBox, int>();
+            if (buttoni.Count != 0)
+            {
+                Button btn = buttoni[rnd.Next(buttoni.Count)];
                 btn.Text = btn.Tag.ToString();
                 btn.Enabled = false;
+                string num = btn.Name.Substring(6, btn.Name.Length - 6);
+                int t = Int32.Parse(num);
+                if (t < 5) otv1++;
+                else if (t < 9) otv2++;
+                else if (t < 13) otv3++;
+                else otv4++;
 
                 await Task.Delay(500);
-                Dictionary<TextBox, int> l = new Dictionary<TextBox, int> { { textBox1, pog1 }, { textBox2, pog2 }, { textBox3, pog3 }, { textBox4, pog4 } };
+
+                l.Add(textBox1, otv1);
+                l.Add(textBox2, otv2);
+                l.Add(textBox3, otv3);
+                l.Add(textBox4, otv4);
                 l.OrderByDescending(pair => pair.Value);
                 while (true)
                 {
-                    //if prazna
-                    if (l.First().Key.Text != "")
+                    //ako je sve ostalo pogođeno, pogađamo konačno rješenje
+                    if (l.Count == 0)
+                    {
+                        break;
+                    }
+                    else if (l.First().Key.Text != "")
                     {
                         l.Remove(l.First().Key);
                     }
@@ -143,9 +159,12 @@ namespace Kviskoteka
                     }
 
                 }
+            }
 
-                double postotak;
 
+            double postotak;
+            if (l.Count != 0)
+            {
                 if (player1Tezina == 1)
                 {
                     postotak = -5;
@@ -163,16 +182,292 @@ namespace Kviskoteka
                 {
                     postotak = 0;
                 }
-                int temp = Int32.Parse(l.First().Key.Name.Substring(3, l.First().Key.Name.Length));
-                if (rnd.NextDouble() < postotak / 100)
+            }
+            else
+            {
+                l.Add(textBox5, 0);
+                if (player1Tezina == 1)
                 {
-                    l.First().Key.Text = rjesenja[temp];
+                    postotak = 30;
+                }
+                else if (player1Tezina == 2)
+                {
+                    postotak = 60;
+                }
+                else
+                {
+                    postotak = 90;
+                }
+
+            }
+            string s = l.First().Key.Name.Substring(7, l.First().Key.Name.Length - 7);
+            int temp = Int32.Parse(s);
+            if (rnd.NextDouble() < postotak / 100)
+            {
+                l.First().Key.Text = rjesenja[temp-1];
+                pictureBox1.BackColor = Color.Green;
+                if (temp == 1)
+                {
+                    button1.Text = button1.Tag.ToString();
+                    button1.Enabled = false;
+                    button2.Text = button2.Tag.ToString();
+                    button2.Enabled = false;
+                    button3.Text = button3.Tag.ToString();
+                    button3.Enabled = false;
+                    button4.Text = button4.Tag.ToString();
+                    button4.Enabled = false;
+                    button17.Enabled = false;
+                    textBox1.ReadOnly = true;
 
                 }
-                else break;
+                else if (temp == 2)
+                {
+                    button5.Text = button5.Tag.ToString();
+                    button5.Enabled = false;
+                    button6.Text = button6.Tag.ToString();
+                    button6.Enabled = false;
+                    button7.Text = button7.Tag.ToString();
+                    button7.Enabled = false;
+                    button8.Text = button8.Tag.ToString();
+                    button8.Enabled = false;
+                    button18.Enabled = false;
+                    textBox2.ReadOnly = true;
+
+                }
+                else if(temp == 3)
+                {
+                    button9.Text = button9.Tag.ToString();
+                    button9.Enabled = false;
+                    button10.Text = button10.Tag.ToString();
+                    button10.Enabled = false;
+                    button11.Text = button11.Tag.ToString();
+                    button11.Enabled = false;
+                    button12.Text = button12.Tag.ToString();
+                    button12.Enabled = false;
+                    button19.Enabled = false;
+                    textBox3.ReadOnly = true;
+
+                }
+                else if(temp == 4)
+                {
+                    button13.Text = button13.Tag.ToString();
+                    button13.Enabled = false;
+                    button14.Text = button14.Tag.ToString();
+                    button14.Enabled = false;
+                    button15.Text = button15.Tag.ToString();
+                    button15.Enabled = false;
+                    button16.Text = button16.Tag.ToString();
+                    button16.Enabled = false;
+                    button20.Enabled = false;
+                    textBox4.ReadOnly = true;
+
+                }
+                await Task.Delay(500);
+                player1 += 2*(ulozio1+1);
+                bodovi1.Text = "Bodovi: " + player1.ToString();
+                if(temp == 5)
+                {
+                    KviskoForm2 ni = new KviskoForm2(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
+                    this.Hide();
+                    ni.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    drugiIgrac();
+                }
             }
-            
-            pictureBox1.BackColor = Color.White;
+            else
+            {
+                pictureBox1.BackColor = Color.Red;
+                await Task.Delay(500);
+                pictureBox1.BackColor = Color.White;
+                treciIgrac();
+            }
+        }
+
+        public async void treciIgrac()
+        {
+            pictureBox2.BackColor = Color.Blue;
+            await Task.Delay(500);
+            List<Button> buttoni = new List<Button>();
+
+            foreach (Control x in this.Controls)
+            {
+                if (x is Button && x.Text == "")
+                {
+                    buttoni.Add((Button)x);
+                }
+            }
+
+            Random rnd = new Random();
+            Dictionary<TextBox, int> l = new Dictionary<TextBox, int>();
+            if (buttoni.Count != 0)
+            {
+                Button btn = buttoni[rnd.Next(buttoni.Count)];
+                btn.Text = btn.Tag.ToString();
+                btn.Enabled = false;
+                string num = btn.Name.Substring(6, btn.Name.Length - 6);
+                int t = Int32.Parse(num);
+                if (t < 5) otv1++;
+                else if (t < 9) otv2++;
+                else if (t < 13) otv3++;
+                else otv4++;
+
+                await Task.Delay(500);
+
+                l.Add(textBox1, otv1);
+                l.Add(textBox2, otv2);
+                l.Add(textBox3, otv3);
+                l.Add(textBox4, otv4);
+                l.OrderByDescending(pair => pair.Value);
+                while (true)
+                {
+                    //ako je sve ostalo pogođeno, pogađamo konačno rješenje
+                    if (l.Count == 0)
+                    {
+                        break;
+                    }
+                    else if (l.First().Key.Text != "")
+                    {
+                        l.Remove(l.First().Key);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+            }
+
+            double postotak;
+            if (l.Count != 0)
+            {
+                if (player2Tezina == 1)
+                {
+                    postotak = -5;
+                }
+                else if (player2Tezina == 2)
+                {
+                    postotak = 15;
+                }
+                else
+                {
+                    postotak = 35;
+                }
+                postotak += 20 * l.First().Value;
+                if (postotak < 0)
+                {
+                    postotak = 0;
+                }
+            }
+            else
+            {
+                l.Add(textBox5, 0);
+                if (player1Tezina == 1)
+                {
+                    postotak = 30;
+                }
+                else if (player1Tezina == 2)
+                {
+                    postotak = 60;
+                }
+                else
+                {
+                    postotak = 90;
+                }
+
+            }
+            string s = l.First().Key.Name.Substring(7, l.First().Key.Name.Length - 7);
+            int temp = Int32.Parse(s);
+            if (rnd.NextDouble() < postotak / 100)
+            {
+                l.First().Key.Text = rjesenja[temp-1];
+                pictureBox2.BackColor = Color.Green;
+                if (temp == 1)
+                {
+                    button1.Text = button1.Tag.ToString();
+                    button1.Enabled = false;
+                    button2.Text = button2.Tag.ToString();
+                    button2.Enabled = false;
+                    button3.Text = button3.Tag.ToString();
+                    button3.Enabled = false;
+                    button4.Text = button4.Tag.ToString();
+                    button4.Enabled = false;
+                    button17.Enabled = false;
+                    textBox1.ReadOnly = true;
+
+                }
+                else if (temp == 2)
+                {
+                    button5.Text = button5.Tag.ToString();
+                    button5.Enabled = false;
+                    button6.Text = button6.Tag.ToString();
+                    button6.Enabled = false;
+                    button7.Text = button7.Tag.ToString();
+                    button7.Enabled = false;
+                    button8.Text = button8.Tag.ToString();
+                    button8.Enabled = false;
+                    button18.Enabled = false;
+                    textBox2.ReadOnly = true;
+
+                }
+                else if (temp == 3)
+                {
+                    button9.Text = button9.Tag.ToString();
+                    button9.Enabled = false;
+                    button10.Text = button10.Tag.ToString();
+                    button10.Enabled = false;
+                    button11.Text = button11.Tag.ToString();
+                    button11.Enabled = false;
+                    button12.Text = button12.Tag.ToString();
+                    button12.Enabled = false;
+                    button19.Enabled = false;
+                    textBox3.ReadOnly = true;
+
+                }
+                else if (temp == 4)
+                {
+                    button13.Text = button13.Tag.ToString();
+                    button13.Enabled = false;
+                    button14.Text = button14.Tag.ToString();
+                    button14.Enabled = false;
+                    button15.Text = button15.Tag.ToString();
+                    button15.Enabled = false;
+                    button16.Text = button16.Tag.ToString();
+                    button16.Enabled = false;
+                    button20.Enabled = false;
+                    textBox4.ReadOnly = true;
+
+                }
+                await Task.Delay(500);
+                player2 += 2 * (ulozio2 + 1);
+                bodovi2.Text = "Bodovi: " + player2.ToString();
+                if (temp == 5)
+                {
+                    KviskoForm2 ni = new KviskoForm2(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
+                    this.Hide();
+                    ni.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    treciIgrac();
+                }
+            }
+            else
+            {
+                pictureBox2.BackColor = Color.Red;
+                await Task.Delay(500);
+                pictureBox2.BackColor = Color.White;
+                foreach (Control x in this.Controls)
+                {
+                    if (x is Button && x.Text != "?" && x.Text == "")
+                    {
+                        x.Enabled = true;
+                    }
+                }
+            }
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -187,11 +482,12 @@ namespace Kviskoteka
                     x.Enabled = false;
                 }
             }
-            int temp = Int32.Parse(btn.Name.Substring(6, btn.Name.Length));
-            if (temp < 5) pog1++;
-            else if (temp < 9) pog2++;
-            else if (temp < 13) pog3++;
-            else pog3++;
+            string num = btn.Name.Substring(6, btn.Name.Length-6);
+            int temp = Int32.Parse(num);
+            if (temp < 5) otv1++;
+            else if (temp < 9) otv2++;
+            else if (temp < 13) otv3++;
+            else otv4++;
         }
 
         private async void button17_Click(object sender, EventArgs e)
@@ -211,13 +507,17 @@ namespace Kviskoteka
 
                 foreach (Control x in this.Controls)
                 {
-                    if (x is Button && x.Text != "?" && x.Text == "")
+                    if (x is Button && x.Text == "")
                     {
                         x.Enabled = true;
                     }
+                    else if(x is Button && x.Text != "?" && x.Text != "")
+                    {
+                        x.Enabled = false;
+                    }
                 }
 
-                player++;
+                player+= 2 * (ulozio + 1);
                 label2.Text = "Bodovi: " + player.ToString();
                 button17.Enabled = false;
             }
@@ -225,6 +525,7 @@ namespace Kviskoteka
             else
             {
                 MessageBox.Show("Pogrešan odgovor, drugi igrač je na redu");
+                textBox1.Text = "";
                 drugiIgrac();
             }
         }
@@ -246,13 +547,17 @@ namespace Kviskoteka
 
                 foreach (Control x in this.Controls)
                 {
-                    if (x is Button && x.Text != "?" && x.Text == "")
+                    if (x is Button && x.Text == "")
                     {
                         x.Enabled = true;
                     }
+                    else if (x is Button && x.Text != "?" && x.Text != "")
+                    {
+                        x.Enabled = false;
+                    }
                 }
 
-                player++;
+                player += 2 * (ulozio + 1);
                 label2.Text = "Bodovi: " + player.ToString();
                 button18.Enabled = false;
 
@@ -261,6 +566,7 @@ namespace Kviskoteka
             else
             {
                 MessageBox.Show("Pogrešan odgovor, drugi igrač je na redu");
+                textBox2.Text = "";
                 drugiIgrac();
             }
 
@@ -283,13 +589,17 @@ namespace Kviskoteka
 
                 foreach (Control x in this.Controls)
                 {
-                    if (x is Button && x.Text != "?" && x.Text == "")
+                    if (x is Button && x.Text == "")
                     {
                         x.Enabled = true;
                     }
+                    else if (x is Button && x.Text != "?" && x.Text != "")
+                    {
+                        x.Enabled = false;
+                    }
                 }
 
-                player++;
+                player += 2 * (ulozio + 1);
                 label2.Text = "Bodovi: " + player.ToString();
                 button19.Enabled = false;
 
@@ -298,6 +608,7 @@ namespace Kviskoteka
             else
             {
                 MessageBox.Show("Pogrešan odgovor, drugi igrač je na redu");
+                textBox3.Text = "";
                 drugiIgrac();
             }
         }
@@ -319,13 +630,17 @@ namespace Kviskoteka
 
                 foreach (Control x in this.Controls)
                 {
-                    if (x is Button && x.Text != "?" && x.Text == "")
+                    if (x is Button && x.Text == "")
                     {
                         x.Enabled = true;
                     }
+                    else if (x is Button && x.Text != "?" && x.Text != "")
+                    {
+                        x.Enabled = false;
+                    }
                 }
 
-                player++;
+                player += 2 * (ulozio + 1);
                 label2.Text = "Bodovi: " + player.ToString();
                 button20.Enabled = false;
 
@@ -334,6 +649,7 @@ namespace Kviskoteka
             else
             {
                 MessageBox.Show("Pogrešan odgovor, drugi igrač je na redu");
+                textBox4.Text = "";
                 drugiIgrac();
             }
 
@@ -358,12 +674,24 @@ namespace Kviskoteka
                 }
 
                 //Gotova Igra
-                player++;
+                player += 2 * (ulozio + 1);
+                foreach (Control x in this.Controls)
+                {
+                    if (x is TextBox && x.Text == "")
+                    {
+                        player += 2 * (ulozio + 1);
+                    }
+                }
+                KviskoForm2 ni = new KviskoForm2(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
+                this.Hide();
+                ni.ShowDialog();
+                this.Close();
             }
 
             else
             {
                 MessageBox.Show("Pogrešan odgovor, drugi igrač je na redu");
+                textBox5.Text = "";
                 drugiIgrac();
             }
         }

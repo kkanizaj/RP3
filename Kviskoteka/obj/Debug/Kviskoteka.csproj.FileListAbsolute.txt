@@ -69,3 +69,6 @@ C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskotek
 C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskoteka\Kviskoteka\obj\Debug\Kviskoteka.AsocijacijePitanje.resources
 C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskoteka\Kviskoteka\obj\Debug\Kviskoteka.AsocijacijeForm.resources
 C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskoteka\Kviskoteka\obj\Debug\Kviskoteka.KviskoForm.resources
+C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskoteka\Kviskoteka\obj\Debug\Kviskoteka.KviskoForm2.resources
+C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskoteka\Kviskoteka\obj\Debug\Kviskoteka.ZavršnaIgraForm.resources
+C:\Users\karla\Documents\FAKS\9. SEMESTAR\RP3\RP3 Projektic\Kviskoteka\kviskoteka\Kviskoteka\obj\Debug\Kviskoteka.Kraj.resources

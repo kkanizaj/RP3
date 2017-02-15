@@ -100,7 +100,7 @@ namespace Kviskoteka
                 }
 
                 KviskoForm ni = new KviskoForm(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
-                ni.Hide();
+                this.Hide();
                 ni.ShowDialog();
                 this.Close();
 

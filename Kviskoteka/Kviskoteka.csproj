@@ -94,11 +94,23 @@
       <DependentUpon>AsocijacijePitanje.cs</DependentUpon>
     </Compile>
     <Compile Include="DB.cs" />
+    <Compile Include="Kraj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kraj.Designer.cs">
+      <DependentUpon>Kraj.cs</DependentUpon>
+    </Compile>
     <Compile Include="KviskoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KviskoForm.Designer.cs">
       <DependentUpon>KviskoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KviskoForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KviskoForm2.Designer.cs">
+      <DependentUpon>KviskoForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -159,8 +171,14 @@
     <EmbeddedResource Include="AsocijacijePitanje.resx">
       <DependentUpon>AsocijacijePitanje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Kraj.resx">
+      <DependentUpon>Kraj.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KviskoForm.resx">
       <DependentUpon>KviskoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KviskoForm2.resx">
+      <DependentUpon>KviskoForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -187,6 +205,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ZavršnaIgraForm.resx">
+      <DependentUpon>ZavršnaIgraForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ZavršnaPitanje.resx">
       <DependentUpon>ZavršnaPitanje.cs</DependentUpon>
     </EmbeddedResource>

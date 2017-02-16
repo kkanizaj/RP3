@@ -14,6 +14,7 @@ namespace Kviskoteka
         [STAThread]
         static void Main()
         {
+            DB.Prepare();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindowForm());

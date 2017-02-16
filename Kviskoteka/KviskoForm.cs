@@ -22,12 +22,12 @@ namespace Kviskoteka
         int ulozio1=0;
         int ulozio2=0;
 
-        public KviskoForm(int kviskoBodovi, int kviskoBodovi1, int kviskoBodovi2, int player, int player1, int player2)
+        public KviskoForm(int skviskoBodovi, int skviskoBodovi1, int skviskoBodovi2, int player, int player1, int player2)
         {
             InitializeComponent();
-            this.kviskoBodovi = kviskoBodovi;
-            this.kviskoBodovi1 = kviskoBodovi1;
-            this.kviskoBodovi2 = kviskoBodovi2;
+            this.kviskoBodovi = skviskoBodovi;
+            this.kviskoBodovi1 = skviskoBodovi1;
+            this.kviskoBodovi2 = skviskoBodovi2;
             this.player = player;
             this.player1 = player1;
             this.player2 = player2;

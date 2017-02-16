@@ -1,4 +1,5 @@
-﻿using Kviskoteka.Objects;
+﻿using Kviskoteka.Model.Extras;
+using Kviskoteka.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace Kviskoteka
 {
     public partial class ABCPitalicaForm : Form
     {
-        IEnumerable<int> iskoristenaPitanja = new SortedSet<int>();
+        List<ABCPitalica> svaPitanja = new List<ABCPitalica>();
         string trenutniTocan;
 
         int player = 0;
@@ -33,6 +34,8 @@ namespace Kviskoteka
             Region rg = new Region(gp);
             pictureBox1.Region = rg;
             pictureBox2.Region = rg;
+
+            svaPitanja = ABCPitalicaAccess.getAll();
 
             postaviPitanje();
         }
@@ -77,7 +80,7 @@ namespace Kviskoteka
             a_odgovor.BackColor = Color.LightGray;
             b_odgovor.BackColor = Color.LightGray;
             c_odgovor.BackColor = Color.LightGray;
-            if (brojPitanja < 1)
+            if (brojPitanja < 5)
             {
                 postaviPitanje();
             }
@@ -117,7 +120,10 @@ namespace Kviskoteka
             //uzeti pitanje s neiskorištenim id-om
             kvisko.Text = "KVISKO: " + kviskoBodovi.ToString();
             updateBodovi();
-            ABCPitalica prva = new ABCPitalica("Koliko je 2+2?", "4", "3", "2");
+            //ABCPitalica prva = new ABCPitalica("Koliko je 2+2?", "4", "3", "2");
+            Random rand = new Random();
+            ABCPitalica prva = svaPitanja[rand.Next(0, svaPitanja.Count)];
+            svaPitanja.Remove(prva);
 
             string[] odgovori = new[] { prva.Tocan, prva.Drugi, prva.Treci };
             trenutniTocan = prva.Tocan;

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Kviskoteka.Model.Extras;
 
 namespace Kviskoteka
 {
@@ -23,7 +24,7 @@ namespace Kviskoteka
             if (pitanje.Text.Length > 0 && tocan.Text.Length > 0 && drugi.Text.Length > 0 && treci.Text.Length > 0)
             {
                 ABCPitalica nova = new ABCPitalica(pitanje.Text, tocan.Text, drugi.Text, treci.Text);
-                //spremiti u bazu
+                ABCPitalicaAccess.AddABCPitalica(nova);
                 pitanje.Text = "";
                 tocan.Text = "";
                 drugi.Text = "";

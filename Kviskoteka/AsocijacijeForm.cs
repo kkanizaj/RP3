@@ -1,4 +1,5 @@
-﻿using Kviskoteka.Objects;
+﻿using Kviskoteka.Model.Extras;
+using Kviskoteka.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace Kviskoteka
 {
     public partial class AsocijacijeForm : Form
     {
+        List<Asocijacije> svaPitanja = new List<Asocijacije>();
 
         int player;
         int player1;
@@ -70,14 +72,18 @@ namespace Kviskoteka
             bodovi2.Text = "Bodovi: " + player2.ToString();
             label3.Text = "Kvisko: " + kviskoBodovi.ToString();
 
+            svaPitanja = AsocijacijeAccess.getAll();
+
             pokreniIgru();
         }
 
 
         public void pokreniIgru()
         {
+            //Asocijacije prva = new Asocijacije("kuhinja", "slano", "natrij", "klor", "sol", "žeđ", "čaša", "led", "para", "voda", "udovica", "humor", "zlato", "boja", "crno", "odbojka", "obala", "suncobran", "pijesak", "plaža", "more");
 
-            Asocijacije prva = new Asocijacije("kuhinja", "slano", "natrij", "klor", "sol", "žeđ", "čaša", "led", "para", "voda", "udovica", "humor", "zlato", "boja", "crno", "odbojka", "obala", "suncobran", "pijesak", "plaža", "more");
+            Random rand = new Random();
+            Asocijacije prva = svaPitanja[rand.Next(0, svaPitanja.Count)];
 
             button1.Tag = prva.P11.ToString();
             button2.Tag = prva.P12.ToString();
@@ -110,7 +116,7 @@ namespace Kviskoteka
         {   
 
             pictureBox1.BackColor = Color.Blue;
-            await Task.Delay(500);
+            await Task.Delay(700);
             List<Button> buttoni = new List<Button>();
 
             foreach (Control x in this.Controls)
@@ -122,7 +128,7 @@ namespace Kviskoteka
             }
 
             Random rnd = new Random();
-            Dictionary<TextBox, int> l = new Dictionary<TextBox, int>();
+            List<KeyValuePair<TextBox, int>> l = new List<KeyValuePair<TextBox, int>>();
             if (buttoni.Count != 0)
             {
                 Button btn = buttoni[rnd.Next(buttoni.Count)];
@@ -135,13 +141,19 @@ namespace Kviskoteka
                 else if (t < 13) otv3++;
                 else otv4++;
 
-                await Task.Delay(500);
+                await Task.Delay(700);
 
-                l.Add(textBox1, otv1);
-                l.Add(textBox2, otv2);
-                l.Add(textBox3, otv3);
-                l.Add(textBox4, otv4);
-                l.OrderByDescending(pair => pair.Value);
+                l.Add(new KeyValuePair < TextBox, int > (textBox1, otv1));
+                l.Add(new KeyValuePair<TextBox, int>(textBox2, otv2));
+                l.Add(new KeyValuePair<TextBox, int>(textBox3, otv3));
+                l.Add(new KeyValuePair<TextBox, int>(textBox4, otv4));
+                l.Sort(
+                    delegate (KeyValuePair<TextBox, int> pair1,
+                     KeyValuePair<TextBox, int> pair2)
+                    {
+                        return pair1.Value.CompareTo(pair2.Value);
+                    }
+                   );
                 while (true)
                 {
                     //ako je sve ostalo pogođeno, pogađamo konačno rješenje
@@ -151,7 +163,7 @@ namespace Kviskoteka
                     }
                     else if (l.First().Key.Text != "")
                     {
-                        l.Remove(l.First().Key);
+                        l.Remove(l.First());
                     }
                     else
                     {
@@ -185,7 +197,7 @@ namespace Kviskoteka
             }
             else
             {
-                l.Add(textBox5, 0);
+                l.Add(new KeyValuePair<TextBox, int>(textBox5, 0));
                 if (player1Tezina == 1)
                 {
                     postotak = 30;
@@ -262,11 +274,12 @@ namespace Kviskoteka
                     textBox4.ReadOnly = true;
 
                 }
-                await Task.Delay(500);
+                await Task.Delay(700);
                 player1 += 2*(ulozio1+1);
                 bodovi1.Text = "Bodovi: " + player1.ToString();
                 if(temp == 5)
                 {
+                    await Task.Delay(700);
                     KviskoForm2 ni = new KviskoForm2(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
                     this.Hide();
                     ni.ShowDialog();
@@ -280,7 +293,7 @@ namespace Kviskoteka
             else
             {
                 pictureBox1.BackColor = Color.Red;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 pictureBox1.BackColor = Color.White;
                 treciIgrac();
             }
@@ -289,7 +302,7 @@ namespace Kviskoteka
         public async void treciIgrac()
         {
             pictureBox2.BackColor = Color.Blue;
-            await Task.Delay(500);
+            await Task.Delay(700);
             List<Button> buttoni = new List<Button>();
 
             foreach (Control x in this.Controls)
@@ -314,7 +327,7 @@ namespace Kviskoteka
                 else if (t < 13) otv3++;
                 else otv4++;
 
-                await Task.Delay(500);
+                await Task.Delay(700);
 
                 l.Add(textBox1, otv1);
                 l.Add(textBox2, otv2);
@@ -440,11 +453,12 @@ namespace Kviskoteka
                     textBox4.ReadOnly = true;
 
                 }
-                await Task.Delay(500);
+                await Task.Delay(700);
                 player2 += 2 * (ulozio2 + 1);
                 bodovi2.Text = "Bodovi: " + player2.ToString();
                 if (temp == 5)
                 {
+                    await Task.Delay(700);
                     KviskoForm2 ni = new KviskoForm2(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
                     this.Hide();
                     ni.ShowDialog();
@@ -458,7 +472,7 @@ namespace Kviskoteka
             else
             {
                 pictureBox2.BackColor = Color.Red;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 pictureBox2.BackColor = Color.White;
                 foreach (Control x in this.Controls)
                 {
@@ -492,12 +506,12 @@ namespace Kviskoteka
 
         private async void button17_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.ToLower() == rjesenja[0])
+            if (textBox1.Text.ToLower() == rjesenja[0].ToLower())
             {
                 textBox1.Enabled = false;
 
                 button17.BackColor = Color.Green;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 button17.BackColor = Color.White;
 
                 button1.Text = button1.Tag.ToString();
@@ -532,12 +546,12 @@ namespace Kviskoteka
 
         private async void button18_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text.ToLower() == rjesenja[1])
+            if (textBox2.Text.ToLower() == rjesenja[1].ToLower())
             {
                 textBox2.Enabled = false;
 
                 button18.BackColor = Color.Green;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 button18.BackColor = Color.White;
 
                 button5.Text = button5.Tag.ToString();
@@ -574,12 +588,12 @@ namespace Kviskoteka
 
         private async void button19_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text.ToLower() == rjesenja[2])
+            if (textBox3.Text.ToLower() == rjesenja[2].ToLower())
             {
                 textBox3.Enabled = false;
 
                 button19.BackColor = Color.Green;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 button19.BackColor = Color.White;
 
                 button9.Text = button9.Tag.ToString();
@@ -615,12 +629,12 @@ namespace Kviskoteka
 
         private async void button20_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text.ToLower() == rjesenja[3])
+            if (textBox4.Text.ToLower() == rjesenja[3].ToLower())
             {
                 textBox4.Enabled = false;
 
                 button20.BackColor = Color.Green;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 button20.BackColor = Color.White;
 
                 button13.Text = button13.Tag.ToString();
@@ -657,12 +671,12 @@ namespace Kviskoteka
 
         private async void button21_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text.ToLower() == rjesenja[4])
+            if (textBox5.Text.ToLower() == rjesenja[4].ToLower())
             {
                 textBox5.Enabled = false;
 
                 button21.BackColor = Color.Green;
-                await Task.Delay(500);
+                await Task.Delay(700);
                 button21.BackColor = Color.White;
 
                 foreach (Control x in this.Controls)
@@ -682,6 +696,7 @@ namespace Kviskoteka
                         player += 2 * (ulozio + 1);
                     }
                 }
+                await Task.Delay(700);
                 KviskoForm2 ni = new KviskoForm2(kviskoBodovi, kviskoBodovi1, kviskoBodovi2, player, player1, player2);
                 this.Hide();
                 ni.ShowDialog();

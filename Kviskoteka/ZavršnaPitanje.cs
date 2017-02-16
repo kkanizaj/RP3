@@ -1,4 +1,5 @@
-﻿using Kviskoteka.Objects;
+﻿using Kviskoteka.Model.Extras;
+using Kviskoteka.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,7 @@ namespace Kviskoteka
             if (Pitanje.Text.Length > 0  && Odgovor.Text.Length > 0)
             {
                 ZavrsnaIgra nova = new ZavrsnaIgra(Pitanje.Text, Odgovor.Text);
-                //spremiti u bazu
+                ZavrsnaIgraAccess.AddZavrsnaIgra(nova);
                 Pitanje.Text = "";
                 Odgovor.Text = "";
             }

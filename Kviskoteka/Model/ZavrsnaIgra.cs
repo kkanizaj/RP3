@@ -18,5 +18,12 @@ namespace Kviskoteka.Objects
             Pitanje = pitanje;
             Odgovor = odgovor;
         }
+
+        public ZavrsnaIgra(int id, string pitanje, string odgovor)
+        {
+            Id = id;
+            Pitanje = pitanje;
+            Odgovor = odgovor;
+        }
     }
 }

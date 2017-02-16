@@ -70,6 +70,14 @@ namespace Kviskoteka.Objects
             Treci = treci;
         }
 
-        
+        public ABCPitalica(int id, string pitanje, string tocan, string drugi, string treci)
+        {
+            Id = id;
+            Pitanje = pitanje;
+            Tocan = tocan;
+            Drugi = drugi;
+            Treci = treci;
+        }
+
     }
 }

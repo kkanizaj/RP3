@@ -1,4 +1,5 @@
-﻿using Kviskoteka.Objects;
+﻿using Kviskoteka.Model.Extras;
+using Kviskoteka.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//TODO: location prozora, textBox-> label, baza, font, size, usporiti igre, dodati brojPitanja = 5;
+//TODO: baza, dodati brojPitanja = 5;
 namespace Kviskoteka
 {
     public partial class ZavršnaIgraForm : Form
     {
-        IEnumerable<int> iskoristenaPitanja = new SortedSet<int>();
+        List<ZavrsnaIgra> svaPitanja = new List<ZavrsnaIgra>();
 
         int player = 0;
         int player1 = 0;
@@ -30,7 +31,6 @@ namespace Kviskoteka
         int ulozio2;
         DateTime start;
         DateTime naseVrijeme;
-        bool kliknut = false;
 
         public ZavršnaIgraForm(int kviskoBodovi, int kviskoBodovi1, int kviskoBodovi2, int player, int player1, int player2, int ulozio, int ulozio1, int ulozio2)
         {
@@ -68,6 +68,8 @@ namespace Kviskoteka
             bodovi1.Text = "Bodovi: " + player1.ToString();
             bodovi2.Text = "Bodovi: " + player2.ToString();
 
+            svaPitanja = ZavrsnaIgraAccess.getAll();
+
             postaviPitanje();
 
         }
@@ -76,14 +78,19 @@ namespace Kviskoteka
         {
             if (brojPitanja < 5)
             {
-                ZavrsnaIgra prva = new ZavrsnaIgra("pitanje", "odgovor");
-                pitanje.Text = "";
+
+                prijava.Image = Kviskoteka.Properties.Resources.gumb;
+                Random rand = new Random();
+                ZavrsnaIgra prva = svaPitanja[rand.Next(0, svaPitanja.Count)];
+                svaPitanja.Remove(prva);
+
+                timer.Text = "";
                 await Task.Delay(1000);
                 pictureBox1.BackColor = Color.White;
                 pictureBox2.BackColor = Color.White;
 
                 pitanje.Text = prva.Pitanje;
-                Dictionary<int, double> vrijemeNaTasteru = new Dictionary<int, double>();
+                List<KeyValuePair<int, double>> vrijemeNaTasteru = new List<KeyValuePair<int, double>>();
                 prijava.Enabled = true;
 
                 start = DateTime.Now;
@@ -95,29 +102,31 @@ namespace Kviskoteka
                 double vrijemeIgraca2 = rnd.NextDouble() * 3;
 
                 double trazenoVrijeme = rnd.NextDouble() * 3;
-                //TODO
-                //for (int i = 0; i <= 15 ; i++)
-                //{
-                //    await Task.Delay(200);
-                //    progressBar1.Increment(2);
-                //}
+                for (int i = 3; i >= 1; i--)
+                {
+                    timer.Text = i.ToString();
+                    await Task.Delay(1000);
+                }
+                timer.Text = "0";
                 await Task.Delay(3000); // u ovom vremenu se ocekuje nas eventualni klik na taster
+                timer.Text = "";
                 prijava.Enabled = false;
                 double vrijemeIgraca = naseVrijeme.Second + (double)naseVrijeme.Millisecond / 1000 - start.Second - (double)start.Millisecond / 1000;
+                
+                vrijemeNaTasteru.Add(new KeyValuePair<int, double>(1, Math.Abs(vrijemeIgraca1 - trazenoVrijeme)));
+                vrijemeNaTasteru.Add(new KeyValuePair<int, double>(2, Math.Abs(vrijemeIgraca2 - trazenoVrijeme)));
+                vrijemeNaTasteru.Add(new KeyValuePair<int, double>(0, Math.Abs(vrijemeIgraca - trazenoVrijeme)));
 
-                //TODO: provjeriti zasto ne dolazimo na red
-                vrijemeNaTasteru.Add(1, Math.Abs(vrijemeIgraca1 - trazenoVrijeme));
-                vrijemeNaTasteru.Add(2, Math.Abs(vrijemeIgraca2 - trazenoVrijeme));
-                vrijemeNaTasteru.Add(0, Math.Abs(vrijemeIgraca - trazenoVrijeme));
-                vrijemeNaTasteru.OrderBy(pair => pair.Value);
+                vrijemeNaTasteru.Sort(
+                    delegate (KeyValuePair<int, double> pair1,
+                     KeyValuePair<int, double> pair2)
+                    {
+                        return pair1.Value.CompareTo(pair2.Value);
+                       }
+                   );
 
                 while (true)
                 {
-                    button1.Enabled = false;
-                    label4.Visible = false;
-                    button1.Visible = false;
-                    odgovor.Visible = false;
-
                     if (vrijemeNaTasteru.Count == 0)
                     {
                         ++brojPitanja;
@@ -126,18 +135,16 @@ namespace Kviskoteka
                     }
                     else if(vrijemeNaTasteru.First().Key == 0)
                     {
-                        vrijemeNaTasteru.Remove(vrijemeNaTasteru.First().Key);
-                        label4.Visible = true;
-                        button1.Visible = true;
-                        button1.Enabled = true;
-                        odgovor.Visible = true;
-                        odgovor.Enabled = true;
+                        vrijemeNaTasteru.Remove(vrijemeNaTasteru.First());
 
                         DateTime sad = DateTime.Now;
-                        while (!kliknut && (DateTime.Now.Second-sad.Second)<10 )
+                        string odgovor;
+                        using (Odgovor formOptions = new Odgovor())
                         {
+                            formOptions.ShowDialog();
+                            odgovor = formOptions.GetMyResult;
                         }
-                        if(odgovor.Text == prva.Odgovor)
+                        if (odgovor.ToLower() == prva.Odgovor.ToLower())
                         {
                             player += 2 * (ulozio + 1);
                             label2.Text = "Bodovi: " + player.ToString();
@@ -148,7 +155,7 @@ namespace Kviskoteka
                     }
                     else if(vrijemeNaTasteru.First().Key == 1)
                     {
-                        vrijemeNaTasteru.Remove(vrijemeNaTasteru.First().Key);
+                        vrijemeNaTasteru.Remove(vrijemeNaTasteru.First());
                         pictureBox1.BackColor = Color.Blue;
                         await Task.Delay(1000);
                         Random random = new Random();
@@ -157,6 +164,9 @@ namespace Kviskoteka
                             player1 += 2*(ulozio1+1);
                             bodovi1.Text = "Bodovi: " + player1.ToString();
                             pictureBox1.BackColor = Color.Green;
+                            label3.Text = prva.Odgovor;
+                            await Task.Delay(1000);
+                            label3.Text = "";
                             ++brojPitanja; postaviPitanje(); break;
                         }
                         else
@@ -167,7 +177,7 @@ namespace Kviskoteka
                     }
                     else if(vrijemeNaTasteru.First().Key == 2)
                     {
-                        vrijemeNaTasteru.Remove(vrijemeNaTasteru.First().Key);
+                        vrijemeNaTasteru.Remove(vrijemeNaTasteru.First());
                         pictureBox2.BackColor = Color.Blue;
                         await Task.Delay(1000);
                         Random random = new Random();
@@ -176,6 +186,9 @@ namespace Kviskoteka
                             player2 += 2 * (ulozio1 + 1);
                             bodovi2.Text = "Bodovi: " + player2.ToString();
                             pictureBox2.BackColor = Color.Green;
+                            label4.Text = prva.Odgovor;
+                            await Task.Delay(1000);
+                            label4.Text = "";
                             ++brojPitanja; postaviPitanje(); break;
                         }
                         else
@@ -188,6 +201,7 @@ namespace Kviskoteka
             }
             else
             {
+                await Task.Delay(700);
                 Kraj ni = new Kraj(player, player1, player2);
                 this.Hide();
                 ni.ShowDialog();
@@ -195,16 +209,19 @@ namespace Kviskoteka
             }
 
         }
+        
 
-        private void prijava_Click(object sender, EventArgs e)
+        private void ZavršnaIgraForm_Load(object sender, EventArgs e)
         {
-            naseVrijeme = DateTime.Now;
-            prijava.Enabled = false;
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void prijava_Click_1(object sender, EventArgs e)
         {
-            kliknut = true;
+            naseVrijeme = DateTime.Now;
+            prijava.Image = Kviskoteka.Properties.Resources.gumb2;
+            prijava.Enabled = false;
+
         }
     }
 }

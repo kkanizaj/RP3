@@ -37,9 +37,10 @@
             // 
             // ABC
             // 
+            this.ABC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.ABC.Location = new System.Drawing.Point(213, 87);
             this.ABC.Name = "ABC";
-            this.ABC.Size = new System.Drawing.Size(342, 97);
+            this.ABC.Size = new System.Drawing.Size(300, 100);
             this.ABC.TabIndex = 0;
             this.ABC.Text = "ABC Pitalica";
             this.ABC.UseVisualStyleBackColor = true;
@@ -47,9 +48,10 @@
             // 
             // Asocijacije
             // 
+            this.Asocijacije.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Asocijacije.Location = new System.Drawing.Point(213, 205);
             this.Asocijacije.Name = "Asocijacije";
-            this.Asocijacije.Size = new System.Drawing.Size(342, 97);
+            this.Asocijacije.Size = new System.Drawing.Size(300, 100);
             this.Asocijacije.TabIndex = 1;
             this.Asocijacije.Text = "Asocijacije";
             this.Asocijacije.UseVisualStyleBackColor = true;
@@ -57,9 +59,10 @@
             // 
             // Završna
             // 
+            this.Završna.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.Završna.Location = new System.Drawing.Point(213, 327);
             this.Završna.Name = "Završna";
-            this.Završna.Size = new System.Drawing.Size(342, 97);
+            this.Završna.Size = new System.Drawing.Size(300, 100);
             this.Završna.TabIndex = 2;
             this.Završna.Text = "Završna Igra";
             this.Završna.UseVisualStyleBackColor = true;
@@ -68,18 +71,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label1.Location = new System.Drawing.Point(115, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(729, 44);
+            this.label1.Size = new System.Drawing.Size(517, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Odaberite igru za koju želite dodati pitanja";
             // 
             // Natrag
             // 
-            this.Natrag.Location = new System.Drawing.Point(651, 416);
+            this.Natrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.Natrag.Location = new System.Drawing.Point(634, 416);
             this.Natrag.Name = "Natrag";
-            this.Natrag.Size = new System.Drawing.Size(112, 42);
+            this.Natrag.Size = new System.Drawing.Size(149, 42);
             this.Natrag.TabIndex = 4;
             this.Natrag.Text = "NATRAG";
             this.Natrag.UseVisualStyleBackColor = true;
@@ -95,7 +99,9 @@
             this.Controls.Add(this.Završna);
             this.Controls.Add(this.Asocijacije);
             this.Controls.Add(this.ABC);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Napredne";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Napredne";
             this.ResumeLayout(false);
             this.PerformLayout();

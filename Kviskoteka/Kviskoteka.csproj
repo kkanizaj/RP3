@@ -257,8 +257,19 @@
     <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\b1.JPG" />
+    <Content Include="Images\b2.JPG" />
+    <Content Include="Images\b3.jpg" />
+    <Content Include="Images\back1.jpg" />
+    <Content Include="Images\back2.jpg" />
+    <Content Include="Images\back3.jpg" />
+    <Content Include="Images\back4.jpg" />
+    <Content Include="Images\back5.jpg" />
+    <Content Include="Images\bb.jpg" />
     <Content Include="Images\gumb.png" />
     <Content Include="Images\gumb2.png" />
+    <Content Include="Images\icon.ico" />
+    <Content Include="Images\kvisko.jpg" />
     <Content Include="Images\prof1.png" />
     <Content Include="baza.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

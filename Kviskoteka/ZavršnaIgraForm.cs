@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//TODO: baza, dodati brojPitanja = 5;
 namespace Kviskoteka
 {
     public partial class ZavršnaIgraForm : Form
@@ -86,8 +85,8 @@ namespace Kviskoteka
 
                 timer.Text = "";
                 await Task.Delay(1000);
-                pictureBox1.BackColor = Color.White;
-                pictureBox2.BackColor = Color.White;
+                pictureBox1.BackColor = Color.Transparent;
+                pictureBox2.BackColor = Color.Transparent;
 
                 pitanje.Text = prva.Pitanje;
                 List<KeyValuePair<int, double>> vrijemeNaTasteru = new List<KeyValuePair<int, double>>();
@@ -144,7 +143,7 @@ namespace Kviskoteka
                             formOptions.ShowDialog();
                             odgovor = formOptions.GetMyResult;
                         }
-                        if (odgovor.ToLower() == prva.Odgovor.ToLower())
+                        if (odgovor!=null && odgovor.ToLower() == prva.Odgovor.ToLower())
                         {
                             player += 2 * (ulozio + 1);
                             label2.Text = "Bodovi: " + player.ToString();
@@ -156,14 +155,14 @@ namespace Kviskoteka
                     else if(vrijemeNaTasteru.First().Key == 1)
                     {
                         vrijemeNaTasteru.Remove(vrijemeNaTasteru.First());
-                        pictureBox1.BackColor = Color.Blue;
+                        pictureBox1.BackColor = Color.SteelBlue;
                         await Task.Delay(1000);
                         Random random = new Random();
                         if (random.NextDouble() < player1Tezina)
                         {
                             player1 += 2*(ulozio1+1);
                             bodovi1.Text = "Bodovi: " + player1.ToString();
-                            pictureBox1.BackColor = Color.Green;
+                            pictureBox1.BackColor = Color.SeaGreen;
                             label3.Text = prva.Odgovor;
                             await Task.Delay(1000);
                             label3.Text = "";
@@ -171,21 +170,21 @@ namespace Kviskoteka
                         }
                         else
                         {
-                            pictureBox1.BackColor = Color.Red;
+                            pictureBox1.BackColor = Color.Maroon;
                             await Task.Delay(500);
                         }
                     }
                     else if(vrijemeNaTasteru.First().Key == 2)
                     {
                         vrijemeNaTasteru.Remove(vrijemeNaTasteru.First());
-                        pictureBox2.BackColor = Color.Blue;
+                        pictureBox2.BackColor = Color.SteelBlue;
                         await Task.Delay(1000);
                         Random random = new Random();
                         if (random.NextDouble() < player1Tezina)
                         {
                             player2 += 2 * (ulozio1 + 1);
                             bodovi2.Text = "Bodovi: " + player2.ToString();
-                            pictureBox2.BackColor = Color.Green;
+                            pictureBox2.BackColor = Color.SeaGreen;
                             label4.Text = prva.Odgovor;
                             await Task.Delay(1000);
                             label4.Text = "";
@@ -193,7 +192,7 @@ namespace Kviskoteka
                         }
                         else
                         {
-                            pictureBox2.BackColor = Color.Red;
+                            pictureBox2.BackColor = Color.Maroon;
                             await Task.Delay(500);
                         }
                     }

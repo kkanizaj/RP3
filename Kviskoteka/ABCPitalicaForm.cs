@@ -51,20 +51,20 @@ namespace Kviskoteka
             if(random.NextDouble() < player1Tezina)
             {
                 player1 += 2;
-                pictureBox1.BackColor = Color.Green; 
+                pictureBox1.BackColor = Color.SeaGreen; 
             }
             else
             {
-                pictureBox1.BackColor = Color.Red;
+                pictureBox1.BackColor = Color.Maroon;
             }
             if (random.NextDouble() < player2Tezina)
             {
                 player2 += 2;
-                pictureBox2.BackColor = Color.Green;
+                pictureBox2.BackColor = Color.SeaGreen;
             }
             else
             {
-                pictureBox2.BackColor = Color.Red;
+                pictureBox2.BackColor = Color.Maroon;
             }
 
             player1bodovi.Text = "BODOVI: " + player1.ToString();
@@ -75,11 +75,11 @@ namespace Kviskoteka
             //System.Threading.Thread.Sleep(5000);
             await Task.Delay(2000);
 
-            pictureBox1.BackColor = Color.White;
-            pictureBox2.BackColor = Color.White;
-            a_odgovor.BackColor = Color.LightGray;
-            b_odgovor.BackColor = Color.LightGray;
-            c_odgovor.BackColor = Color.LightGray;
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox2.BackColor = Color.Transparent;
+            a_odgovor.BackColor = Color.SkyBlue;
+            b_odgovor.BackColor = Color.SkyBlue;
+            c_odgovor.BackColor = Color.SkyBlue;
             if (brojPitanja < 5)
             {
                 postaviPitanje();
@@ -116,11 +116,8 @@ namespace Kviskoteka
             a_odgovor.Enabled = true;
             b_odgovor.Enabled = true;
             c_odgovor.Enabled = true;
-
-            //uzeti pitanje s neiskorištenim id-om
-            kvisko.Text = "KVISKO: " + kviskoBodovi.ToString();
+            
             updateBodovi();
-            //ABCPitalica prva = new ABCPitalica("Koliko je 2+2?", "4", "3", "2");
             Random rand = new Random();
             ABCPitalica prva = svaPitanja[rand.Next(0, svaPitanja.Count)];
             svaPitanja.Remove(prva);
@@ -156,12 +153,12 @@ namespace Kviskoteka
             c_odgovor.Enabled = false;
             if (a_odgovor.Text == trenutniTocan)
             {
-                a_odgovor.BackColor = Color.Green;
+                a_odgovor.BackColor = Color.SeaGreen;
                 player += 2;
             }
             else
             {
-                a_odgovor.BackColor = Color.Red;
+                a_odgovor.BackColor = Color.Maroon;
             }
 
             updateBodovi();
@@ -176,12 +173,12 @@ namespace Kviskoteka
             c_odgovor.Enabled = false;
             if (b_odgovor.Text == trenutniTocan)
             {
-                b_odgovor.BackColor = Color.Green;
+                b_odgovor.BackColor = Color.SeaGreen;
                 player += 2;
             }
             else
             {
-                b_odgovor.BackColor = Color.Red;
+                b_odgovor.BackColor = Color.Maroon;
             }
 
             updateBodovi();
@@ -196,12 +193,12 @@ namespace Kviskoteka
             b_odgovor.Enabled = false;
             if (c_odgovor.Text == trenutniTocan)
             {
-                c_odgovor.BackColor = Color.Green;
+                c_odgovor.BackColor = Color.SeaGreen;
                 player += 2;
             }
             else
             {
-                c_odgovor.BackColor = Color.Red;
+                c_odgovor.BackColor = Color.Maroon;
             }
 
             updateBodovi();
